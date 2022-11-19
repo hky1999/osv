@@ -112,7 +112,7 @@ def start_osv_qemu(options):
     elif options.block_device_cache != None:
         aio = 'cache=%s,aio=threads'% options.block_device_cache
     else:
-        aio = 'cache=none,aio=native'
+        aio = 'cache=none,aio=threads'
 
     args = [
         "-m", options.memsize,
