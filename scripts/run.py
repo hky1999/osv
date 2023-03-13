@@ -294,8 +294,10 @@ def start_osv_qemu(options):
         qemu_env = os.environ.copy()
 
         qemu_env['OSV_BRIDGE'] = options.bridge
-        qemu_path = options.qemu_path or qemu_env.get('QEMU_PATH') or ('qemu-system-%s' % options.arch)
+        # qemu_path = options.qemu_path or qemu_env.get('QEMU_PATH') or ('qemu-system-%s' % options.arch)
+        qemu_path = "/home/tx2/toolchain/qemu/build/qemu-system-aarch64"
         cmdline = [qemu_path] + args
+        print("QEMU_COMMAND: " + format_args(cmdline))
         if options.dry_run:
             print(format_args(cmdline))
         else:
