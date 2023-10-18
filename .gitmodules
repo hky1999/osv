@@ -2,10 +2,6 @@
 	path = external/x64/acpica
 	url = ../../cloudius-systems/acpica
 	ignore = dirty
-[submodule "apps"]
-	path = apps
-	url = https://github.com/hky1999/osv-apps
-	ignore = dirty
 [submodule "modules/httpserver/swagger-ui"]
 	path = modules/httpserver-html5-gui/swagger-ui
 	url = ../../cloudius-systems/swagger-ui.git
