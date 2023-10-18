@@ -217,7 +217,7 @@ def start_osv_qemu(options):
 
         if options.networking:
             if options.tap:
-                args += ["-netdev", "tap,id=hn%d,ifname=%s,script=no,downscript=no" % (idx, options.tap)]
+                args += ["-netdev", "tap,id=hn%d,ifname=%s,script=no,downscript=no,vhost=on" % (idx, options.tap)]
             elif options.vhost:
                 args += ["-netdev", "tap,id=hn%d,script=%s,vhost=on" % (idx, os.path.join(osv_base, "scripts/qemu-ifup.sh"))]
             else:
@@ -229,7 +229,7 @@ def start_osv_qemu(options):
                     print("Unable to find qemu-bridge-helper program", file=sys.stderr)
                     return
                 args += ["-netdev", "bridge,id=hn%d,br=%s,helper=%s" % (idx, options.bridge, bridge_helper)]
-            net_device_options.extend(['netdev=hn%d' % idx, 'id=nic%d' % idx])
+            net_device_options.extend(['netdev=hn%d' % idx, 'id=nic%d' % idx,'disable-legacy=on'])
         else:
             if options.api:
                 forward_options = ',hostfwd=tcp::8000-:8000'
@@ -304,6 +304,9 @@ def start_osv_qemu(options):
         qemu_env['OSV_BRIDGE'] = options.bridge
         qemu_path = options.qemu_path or qemu_env.get('QEMU_PATH') or ('qemu-system-%s' % options.arch)
         cmdline = [qemu_path] + args
+
+        print(format_args(cmdline))
+
         if options.dry_run:
             print(format_args(cmdline))
         else:
