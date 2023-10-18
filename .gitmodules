@@ -14,3 +14,6 @@
 [submodule "musl_1.1.24"]
 	path = musl_1.1.24
 	url = https://github.com/osvunikernel/musl
+[submodule "apps"]
+	path = apps
+	url = https://github.com/hky1999/osv-apps.git
