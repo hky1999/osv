@@ -5,6 +5,7 @@ build/
 modules/java-base/*/target
 modules/java-tests/*/target
 
+.vscode
 .gradle
 tags
 TAGS
